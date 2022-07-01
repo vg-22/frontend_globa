@@ -1,13 +1,17 @@
+import React from 'react';
+
 import './App.css';
 import Header from './components/Header/Header'
-import NewsCard from './components/NewsCard/NewsCard';
+import Main from './components/Main/Main'
+// import NewsCard from './components/NewsCard/NewsCard';
 
 function App() {
   return (
-    <div className="App">
-     <Header />
     
-    </div>
+     <>
+     <Header />
+     <Main />
+     </>
   );
 }
 
