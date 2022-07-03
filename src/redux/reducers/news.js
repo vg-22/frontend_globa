@@ -6,7 +6,7 @@ const initialState = {
   news: [],
 }
 
-const newsReduser = (action, state = initialState) => {
+const newsReduser = ( state = initialState, action ) => {
   switch (action.type) {
     case actionTypes.GET_NEWS_REQUEST:
       return ({

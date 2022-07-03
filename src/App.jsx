@@ -1,13 +1,10 @@
 import React from 'react';
 
-import './App.css';
-import Header from './components/Header/Header'
-import Main from './components/Main/Main'
-// import NewsCard from './components/NewsCard/NewsCard';
+import Header from './components/Header';
+import Main from '../src/components/Main';
 
 function App() {
   return (
-    
      <>
      <Header />
      <Main />
