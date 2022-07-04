@@ -1,10 +1,12 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   container: {
-    padding: "20px 20px",
+    padding: '30px 30px',
     display: 'flex',
     flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
   },
 }));
 

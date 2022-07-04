@@ -1,9 +1,8 @@
-import actionTypes from "./actionTypes";
+import actionTypes from './actionTypes';
 
 export const getNewsRequested = () => ({
   type: actionTypes.GET_NEWS_REQUEST,
 });
-
 
 export const getNewsSuccess = (payload) => ({
   type: actionTypes.GET_NEWS_SUCCESS,
@@ -14,4 +13,3 @@ export const getNewsError = (error) => ({
   type: actionTypes.GET_NEWS_ERROR,
   error,
 });
-

@@ -1,39 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
-import Box from "@mui/material/Box";
-import { useDispatch } from "react-redux";
+import Box from '@mui/material/Box';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { getNewsRequested } from "../../redux/actions/actionCreators";
-import NewsCard from "../NewsCard";
-import useStyles from "./styles";
-
-const newsArray = [
-  {
-    id: 1,
-    title: "Lizard",
-    text: "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
-  },
-  {
-    id: 2,
-    title: "NewGloba",
-    text: "Какой то текст",
-  },
-  {
-    id: 3,
-    title: "NewGloba2",
-    text: "какой то текст lalala",
-  },
-];
+import { getNewsRequested } from '../../redux/actions/actionCreators';
+import NewsCard from '../NewsCard';
+import useStyles from './styles';
 
 function Main() {
   const dispatch = useDispatch();
+  const { news } = useSelector(((item) => item));
   const classes = useStyles();
 
   useEffect(() => {
     dispatch(getNewsRequested());
   }, []);
 
-  const dataNews = newsArray.map(({ title, text, id }) => (
+  const dataNews = news.map(({ title, text, id }) => (
     <NewsCard title={title} key={id} text={text} />
   ));
 

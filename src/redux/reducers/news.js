@@ -1,32 +1,34 @@
-import actionTypes from "../actions/actionTypes";
+import actionTypes from '../actions/actionTypes';
 
 const initialState = {
   isLoading: false,
-  error: {},
+  error: null,
   news: [],
-}
+};
 
-const newsReduser = ( state = initialState, action ) => {
+// eslint-disable-next-line default-param-last
+const newsReduser = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_NEWS_REQUEST:
       return ({
         ...state,
         isLoading: true,
-      })
-  
-  case actionTypes.GET_NEWS_SUCCESS:
-    return({
-      ...state,
-      news: action.payload,
-    } )
+      });
+    case actionTypes.GET_NEWS_SUCCESS:
+      return ({
+        ...state,
+        news: action.payload,
+        isLoading: false,
+      });
     case actionTypes.GET_NEWS_ERROR:
-      return({
+      return ({
         ...state,
         error: action.error,
-      } )
+        isLoading: false,
+      });
     default:
-      state
+      return state;
   }
-}
+};
 
 export default newsReduser;
