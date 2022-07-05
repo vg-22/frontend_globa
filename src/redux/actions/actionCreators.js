@@ -1,7 +1,7 @@
 import actionTypes from './actionTypes';
 
 export const getNewsRequested = () => ({
-  type: actionTypes.GET_NEWS_REQUEST,
+  type: actionTypes.GET_NEWS_REQUESTED,
 });
 
 export const getNewsSuccess = (payload) => ({

@@ -6,10 +6,9 @@ const initialState = {
   news: [],
 };
 
-// eslint-disable-next-line default-param-last
-const newsReduser = (state = initialState, action) => {
+const newsReducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case actionTypes.GET_NEWS_REQUEST:
+    case actionTypes.GET_NEWS_REQUESTED:
       return ({
         ...state,
         isLoading: true,
@@ -31,4 +30,4 @@ const newsReduser = (state = initialState, action) => {
   }
 };
 
-export default newsReduser;
+export default newsReducer;

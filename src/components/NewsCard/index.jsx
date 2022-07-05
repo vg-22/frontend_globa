@@ -3,21 +3,20 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { string } from 'prop-types';
+import { string, shape } from 'prop-types';
 
-import useStyles from "./styles";
+import useStyles from './styles';
 
-const MediaCard = ({
-  title,
-  text,
-}) => {
+function NewsCard({
+  cardContent,
+}) {
+  const { title, text } = cardContent;
   const classes = useStyles();
   return (
     <Card sx={{ maxWidth: 345 }} className={classes.containerCard}>
       <CardMedia
         component="img"
         height="140"
-        src={require('../../img/contemplative.jpeg')}
         alt="green iguana"
       />
       <CardContent>
@@ -32,9 +31,11 @@ const MediaCard = ({
   );
 }
 
-MediaCard.propTypes = {
-  title: string,
-  text: string,
+NewsCard.propTypes = {
+  cardContent: shape({
+    title: string.isRequired,
+    text: string.isRequired,
+  }).isRequired,
 };
 
-export default memo(MediaCard);
+export default memo(NewsCard);

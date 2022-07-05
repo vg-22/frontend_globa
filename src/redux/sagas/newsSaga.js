@@ -10,10 +10,10 @@ function* getNewsWorker() {
 
     yield put(getNewsSuccess(data.data));
   } catch (error) {
-    yield put(getNewsError());
+    yield put(getNewsError(error.message));
   }
 }
 
 export default function* getNewsWatcher() {
-  yield takeLatest(actionTypes.GET_NEWS_REQUEST, getNewsWorker);
+  yield takeLatest(actionTypes.GET_NEWS_REQUESTED, getNewsWorker);
 }

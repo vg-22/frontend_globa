@@ -5,8 +5,8 @@ import {
 } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
-import newsReduser from './reducers/news';
-import getNewsWatcher from './sagas/newsSaga';
+import rootReducer from './reducers';
+import rootSaga from './sagas';
 
 const composeEnchenser = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
@@ -15,10 +15,10 @@ const composeEnchenser = typeof window === 'object' && window.__REDUX_DEVTOOLS_E
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
-  newsReduser,
+  rootReducer,
   composeEnchenser(applyMiddleware(sagaMiddleware)),
 );
 
-sagaMiddleware.run(getNewsWatcher);
+sagaMiddleware.run(rootSaga);
 
 export default store;

@@ -1,16 +1,16 @@
-import React from "react";
+import React, { memo } from 'react';
 
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
-import useStyles from "./styles";
+import useStyles from './styles';
 
 const SIGN_IN = 'Sign in';
 const SIGN_UP = 'Sign up';
-const HEDER_TITLE = 'News';
+const HEADER_TITLE = 'News';
 
 function Header() {
   const classes = useStyles();
@@ -19,7 +19,7 @@ function Header() {
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
           <Typography variant="h6" component="div" sx={{ flexGrow: 0 }}>
-            {HEDER_TITLE}
+            {HEADER_TITLE}
           </Typography>
           <Box>
             <Button className={classes.button} color="inherit">{SIGN_IN}</Button>
@@ -31,4 +31,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default memo(Header);
