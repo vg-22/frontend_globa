@@ -1,15 +1,14 @@
 import React, { memo } from 'react';
+import { string } from 'prop-types';
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-import { string } from 'prop-types';
+import contemplative from '../../img/contemplative.jpeg';
 
 import useStyles from './styles';
-
-import contemplative from '../../img/contemplative.jpeg';
 
 function NewsCard({
   title,
