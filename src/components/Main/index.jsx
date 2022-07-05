@@ -17,8 +17,8 @@ function Main() {
     dispatch(getNewsRequested());
   }, []);
 
-  const dataNews = news.map((item) => (
-    <NewsCard cardContent={item} key={item.id} />
+  const dataNews = news.map(({ title, text, id }) => (
+    <NewsCard title={title} key={id} text={text} />
   ));
 
   return <Box className={classes.container}>{dataNews}</Box>;
