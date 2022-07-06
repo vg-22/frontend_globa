@@ -8,15 +8,14 @@ import Typography from '@mui/material/Typography';
 
 import contemplative from '../../img/contemplative.jpeg';
 
-import useStyles from './styles';
+import './styles.css';
 
 function NewsCard({
   title,
   text,
 }) {
-  const classes = useStyles();
   return (
-    <Card sx={{ maxWidth: 345 }} className={classes.containerCard}>
+    <Card sx={{ maxWidth: 345 }} className="containerCard">
       <CardMedia
         component="img"
         height="140"
