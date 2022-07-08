@@ -1,76 +1,90 @@
-import React, { memo } from 'react';
+import * as React from 'react';
 import { useFormik } from 'formik';
+import { memo, useState } from 'react';
 
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Box from '@mui/material/Box';
+
+import { validationSchemaForLogin, validationSchemaForRegistration } from '../../validate';
 
 function AuthModal() {
+  const [modalType, setModalType] = useState('Login');
+  const isLogin = modalType === 'Login';
+  const inputFieldArray = isLogin ? ['email', 'password'] : ['email', 'password', 'name'];
+
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
+    validationSchema: isLogin ? validationSchemaForLogin : validationSchemaForRegistration,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
   });
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (event) => {
+    setModalType(event.target.name);
     setOpen(true);
   };
 
   const handleClose = () => {
+    formik.resetForm();
     setOpen(false);
   };
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
-      </Button>
+      <Box>
+        <Button
+          variant="outlined"
+          sx={{ color: 'black' }}
+          onClick={handleClickOpen}
+          name="Login"
+        >
+          Login
+        </Button>
+        <Button
+          variant="outlined"
+          sx={{ color: 'black', ml: 2 }}
+          onClick={handleClickOpen}
+          name="Registration"
+        >
+          Registration
+        </Button>
+      </Box>
+
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>{modalType}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
-          </DialogContentText>
           <form onSubmit={formik.handleSubmit}>
-            <TextField
-              fullWidth
-              id="email"
-              name="email"
-              label="Email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={formik.touched.email && formik.errors.email}
-            />
-            <TextField
-              fullWidth
-              id="password"
-              name="password"
-              label="Password"
-              type="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              error={formik.touched.password && Boolean(formik.errors.password)}
-              helperText={formik.touched.password && formik.errors.password}
-            />
-            <Button color="primary" variant="contained" fullWidth type="submit">
+            {inputFieldArray.map((item) => (
+              <TextField
+                fullWidth
+                id={item}
+                name={item}
+                label={item}
+                key={item}
+                value={formik.values[item]}
+                onChange={formik.handleChange}
+                error={formik.touched[item] && Boolean(formik.errors[item])}
+                helperText={formik.touched[item] && formik.errors[item]}
+              />
+            ))}
+
+            <Button component="button" color="primary" variant="contained" fullWidth type="submit">
               Submit
             </Button>
           </form>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
         </DialogActions>
       </Dialog>
     </div>
