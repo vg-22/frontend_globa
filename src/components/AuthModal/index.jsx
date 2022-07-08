@@ -10,10 +10,15 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
 
+import { useDispatch } from 'react-redux';
 import { validationSchemaForLogin, validationSchemaForRegistration } from '../../validate';
+import { loginRequested } from '../../redux/actions/actionCreators/login';
+import { registrationRequested } from '../../redux/actions/actionCreators/registration';
 
 function AuthModal() {
   const [modalType, setModalType] = useState('Login');
+  const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
   const isLogin = modalType === 'Login';
   const inputFieldArray = isLogin ? ['email', 'password'] : ['email', 'password', 'name'];
 
@@ -21,13 +26,17 @@ function AuthModal() {
     initialValues: {
       email: '',
       password: '',
+      name: '',
     },
     validationSchema: isLogin ? validationSchemaForLogin : validationSchemaForRegistration,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      if (isLogin) {
+        dispatch(loginRequested(values));
+      } else {
+        dispatch(registrationRequested(values));
+      }
     },
   });
-  const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = (event) => {
     setModalType(event.target.name);

@@ -1,4 +1,4 @@
-import actionTypes from '../actions/actionTypes';
+import { newsTypes } from '../actions/types';
 
 const initialState = {
   isLoading: false,
@@ -8,18 +8,18 @@ const initialState = {
 
 const newsReducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case actionTypes.GET_NEWS_REQUESTED:
+    case newsTypes.GET_NEWS_REQUESTED:
       return ({
         ...state,
         isLoading: true,
       });
-    case actionTypes.GET_NEWS_SUCCESS:
+    case newsTypes.GET_NEWS_SUCCESS:
       return ({
         ...state,
         news: action.payload,
         isLoading: false,
       });
-    case actionTypes.GET_NEWS_ERROR:
+    case newsTypes.GET_NEWS_ERROR:
       return ({
         ...state,
         error: action.error,

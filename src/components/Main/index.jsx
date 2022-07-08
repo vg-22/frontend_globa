@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Box from '@mui/material/Box';
 
-import { getNewsRequested } from '../../redux/actions/actionCreators';
+import { getNewsRequested } from '../../redux/actions/actionCreators/news';
 import NewsCard from '../NewsCard';
 
 import './styles.css';
