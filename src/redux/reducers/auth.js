@@ -1,7 +1,8 @@
 import { loginTypes, registrationTypes } from '../actions/types';
+import { getToken } from '../../helpers/localStorage';
 
 const initialState = {
-  isAccess: false,
+  isAccess: Boolean(getToken()),
   isLoading: false,
   error: null,
   loginUser: null,

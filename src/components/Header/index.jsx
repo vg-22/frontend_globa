@@ -4,7 +4,9 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteToken } from '../../helpers/localStorage';
+import { logoutUser } from '../../redux/actions/actionCreators/login';
 
 import AuthModal from '../AuthModal';
 import './styles.css';
@@ -13,6 +15,11 @@ const HEADER_TITLE = 'News';
 
 function Header() {
   const isAccess = useSelector((item) => item.authReducer?.isAccess);
+  const dispatch = useDispatch();
+  const logOutUser = () => {
+    deleteToken();
+    dispatch(logoutUser());
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -23,8 +30,8 @@ function Header() {
           </Typography>
           {isAccess
             ? (
-              <Typography>
-                LOGOUT
+              <Typography variant="inherit" onClick={logOutUser}>
+                LogOut
               </Typography>
             )
             : (

@@ -14,3 +14,8 @@ export const loginError = (error) => ({
   type: loginTypes.LOGIN_ERROR,
   error,
 });
+
+export const logoutUser = () => ({
+  type: loginTypes.LOGOUT_USER,
+
+});
