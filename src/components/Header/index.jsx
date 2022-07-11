@@ -1,14 +1,16 @@
 import React, { memo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { useSelector, useDispatch } from 'react-redux';
+import { Button } from '@mui/material';
+
 import { deleteToken } from '../../helpers/localStorage';
 import { logoutUser } from '../../redux/actions/actionCreators/login';
-
 import AuthModal from '../AuthModal';
+
 import './styles.css';
 
 const HEADER_TITLE = 'News';
@@ -30,9 +32,9 @@ function Header() {
           </Typography>
           {isAccess
             ? (
-              <Typography variant="inherit" onClick={logOutUser}>
+              <Button variant="hover" onClick={logOutUser}>
                 LogOut
-              </Typography>
+              </Button>
             )
             : (
               <Box>

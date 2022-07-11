@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { string } from 'prop-types';
+import { string, shape } from 'prop-types';
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -11,9 +11,9 @@ import contemplative from '../../img/contemplative.jpeg';
 import './styles.css';
 
 function NewsCard({
-  title,
-  text,
+  cardContent,
 }) {
+  const { title, text } = cardContent;
   return (
     <Card sx={{ maxWidth: 345 }} className="containerCard">
       <CardMedia
@@ -35,13 +35,10 @@ function NewsCard({
 }
 
 NewsCard.propTypes = {
-  title: string,
-  text: string,
-};
-
-NewsCard.defaultProps = {
-  title: '',
-  text: '',
+  cardContent: shape({
+    title: string.isRequired,
+    text: string.isRequired,
+  }).isRequired,
 };
 
 export default memo(NewsCard);

@@ -1,6 +1,5 @@
-import * as React from 'react';
+import React, { memo, useState } from 'react';
 import { useFormik } from 'formik';
-import { memo, useState } from 'react';
 
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';

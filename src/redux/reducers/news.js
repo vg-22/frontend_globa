@@ -12,12 +12,14 @@ const newsReducer = (state = initialState, action = {}) => {
       return ({
         ...state,
         isLoading: true,
+        error: null,
       });
     case newsTypes.GET_NEWS_SUCCESS:
       return ({
         ...state,
         news: action.payload,
         isLoading: false,
+        error: null,
       });
     case newsTypes.GET_NEWS_ERROR:
       return ({
