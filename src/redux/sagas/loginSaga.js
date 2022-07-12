@@ -8,7 +8,8 @@ import { saveToken } from '../../helpers/localStorage';
 function* loginWorker({ payload }) {
   try {
     const { data } = yield call(api.post, '/authorization', payload);
-    saveToken(data.token);
+    if (!data.token) throw new Error('invalid password or email');
+    yield saveToken(data.token);
     yield put(loginSuccess(data.data));
   } catch (error) {
     yield put(loginError(error.message));

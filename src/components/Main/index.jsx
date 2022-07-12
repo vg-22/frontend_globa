@@ -10,7 +10,7 @@ import './styles.css';
 
 function Main() {
   const dispatch = useDispatch();
-  const { news } = useSelector(((item) => item.newsReducer));
+  const { news } = useSelector(((state) => state.newsReducer));
 
   useEffect(() => {
     dispatch(getNewsRequested());

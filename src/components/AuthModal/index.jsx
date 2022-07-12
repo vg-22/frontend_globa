@@ -1,4 +1,5 @@
 import React, { memo, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 
 import TextField from '@mui/material/TextField';
@@ -9,7 +10,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
 
-import { useDispatch } from 'react-redux';
 import { validationSchemaForLogin, validationSchemaForRegistration } from '../../validate';
 import { loginRequested } from '../../redux/actions/actionCreators/login';
 import { registrationRequested } from '../../redux/actions/actionCreators/registration';
@@ -20,6 +20,7 @@ function AuthModal() {
   const dispatch = useDispatch();
   const isLogin = modalType === 'Login';
   const inputFieldArray = isLogin ? ['email', 'password'] : ['email', 'password', 'name'];
+  const error = useSelector((state) => state.authReducer.error);
 
   const formik = useFormik({
     initialValues: {
@@ -85,7 +86,7 @@ function AuthModal() {
                 helperText={formik.touched[item] && formik.errors[item]}
               />
             ))}
-
+            {error ? <div>{error}</div> : <div /> }
             <Button component="button" color="primary" variant="contained" fullWidth type="submit">
               Submit
             </Button>
