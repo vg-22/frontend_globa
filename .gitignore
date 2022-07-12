@@ -25,3 +25,4 @@ yarn-error.log*
 .history
 .eslintrs.js
 .env
+img
