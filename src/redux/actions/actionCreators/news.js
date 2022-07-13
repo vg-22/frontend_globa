@@ -1,15 +1,15 @@
-import actionTypes from './actionTypes';
+import { newsTypes } from '../types';
 
 export const getNewsRequested = () => ({
-  type: actionTypes.GET_NEWS_REQUESTED,
+  type: newsTypes.GET_NEWS_REQUESTED,
 });
 
 export const getNewsSuccess = (payload) => ({
-  type: actionTypes.GET_NEWS_SUCCESS,
+  type: newsTypes.GET_NEWS_SUCCESS,
   payload,
 });
 
 export const getNewsError = (error) => ({
-  type: actionTypes.GET_NEWS_ERROR,
+  type: newsTypes.GET_NEWS_ERROR,
   error,
 });

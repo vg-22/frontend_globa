@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { string } from 'prop-types';
+import { string, shape } from 'prop-types';
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -8,15 +8,14 @@ import Typography from '@mui/material/Typography';
 
 import contemplative from '../../img/contemplative.jpeg';
 
-import useStyles from './styles';
+import './styles.css';
 
 function NewsCard({
-  title,
-  text,
+  cardContent,
 }) {
-  const classes = useStyles();
+  const { title, text } = cardContent;
   return (
-    <Card sx={{ maxWidth: 345 }} className={classes.containerCard}>
+    <Card sx={{ maxWidth: 345 }} className="containerCard">
       <CardMedia
         component="img"
         height="140"
@@ -36,13 +35,10 @@ function NewsCard({
 }
 
 NewsCard.propTypes = {
-  title: string,
-  text: string,
-};
-
-NewsCard.defaultProps = {
-  title: '',
-  text: '',
+  cardContent: shape({
+    title: string.isRequired,
+    text: string.isRequired,
+  }).isRequired,
 };
 
 export default memo(NewsCard);

@@ -1,30 +1,47 @@
 import React, { memo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { Button } from '@mui/material';
 
-import useStyles from './styles';
+import { deleteToken } from '../../helpers/localStorage';
+import { logoutUser } from '../../redux/actions/actionCreators/login';
+import AuthModal from '../AuthModal';
 
-const SIGN_IN = 'Sign in';
-const SIGN_UP = 'Sign up';
+import './styles.css';
+
 const HEADER_TITLE = 'News';
 
 function Header() {
-  const classes = useStyles();
+  const loginUser = useSelector((state) => state.authReducer.loginUser);
+  const dispatch = useDispatch();
+  const logOutUser = () => {
+    deleteToken();
+    dispatch(logoutUser());
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar className={classes.toolbar}>
+        <Toolbar className="toolbar">
           <Typography variant="h6" component="div" sx={{ flexGrow: 0 }}>
             {HEADER_TITLE}
           </Typography>
-          <Box>
-            <Button className={classes.button} color="inherit">{SIGN_IN}</Button>
-            <Button color="inherit">{SIGN_UP}</Button>
-          </Box>
+          {loginUser
+            ? (
+              <Button variant="hover" onClick={logOutUser}>
+                LogOut
+              </Button>
+            )
+            : (
+              <Box>
+                <AuthModal />
+              </Box>
+            )}
+
         </Toolbar>
       </AppBar>
     </Box>

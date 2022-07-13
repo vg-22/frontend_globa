@@ -1,27 +1,26 @@
 import React, { memo, useEffect } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
+
 import Box from '@mui/material/Box';
 
-import { getNewsRequested } from '../../redux/actions/actionCreators';
+import { getNewsRequested } from '../../redux/actions/actionCreators/news';
 import NewsCard from '../NewsCard';
 
-import useStyles from './styles';
+import './styles.css';
 
 function Main() {
   const dispatch = useDispatch();
-  const { news } = useSelector(((item) => item.newsReducer));
-  const classes = useStyles();
+  const { news } = useSelector(((state) => state.newsReducer));
 
   useEffect(() => {
     dispatch(getNewsRequested());
   }, []);
 
-  const dataNews = news.map(({ title, text, id }) => (
-    <NewsCard title={title} key={id} text={text} />
+  const dataNews = news.map((item) => (
+    <NewsCard cardContent={item} key={item.id} />
   ));
 
-  return <Box className={classes.container}>{dataNews}</Box>;
+  return <Box className="container">{dataNews}</Box>;
 }
 
 export default memo(Main);
