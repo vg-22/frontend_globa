@@ -16,7 +16,7 @@ import './styles.css';
 const HEADER_TITLE = 'News';
 
 function Header() {
-  const loginUser = useSelector((state) => state.authReducer.loginUser);
+  const isAccess = useSelector((state) => state.authReducer.isAccess);
   const dispatch = useDispatch();
   const logOutUser = () => {
     deleteToken();
@@ -30,7 +30,7 @@ function Header() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 0 }}>
             {HEADER_TITLE}
           </Typography>
-          {loginUser
+          {isAccess
             ? (
               <Button variant="hover" onClick={logOutUser}>
                 LogOut

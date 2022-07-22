@@ -1,6 +1,9 @@
 import { loginTypes, registrationTypes } from '../actions/types';
 
+import { getToken } from '../../helpers/localStorage';
+
 const initialState = {
+  isAccess: Boolean(getToken()),
   isLoading: false,
   error: null,
   loginUser: null,
@@ -12,6 +15,7 @@ const authReducer = (state = initialState, action = {}) => {
     case registrationTypes.REGISTRATION_REQUESTED:
       return ({
         ...state,
+        isAccess: false,
         isLoading: true,
         error: null,
       });
@@ -19,6 +23,7 @@ const authReducer = (state = initialState, action = {}) => {
     case registrationTypes.REGISTRATION_SUCCESS:
       return ({
         ...state,
+        isAccess: true,
         loginUser: action.payload,
         isLoading: false,
       });
@@ -32,6 +37,7 @@ const authReducer = (state = initialState, action = {}) => {
     case loginTypes.LOGOUT_USER:
       return ({
         ...state,
+        isAccess: false,
         loginUser: null,
         error: null,
       });
