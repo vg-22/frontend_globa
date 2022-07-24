@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-import contemplative from '../../img/1561526578_1.jpg';
+import contemplative from '../../img/imageForProjectOnFront.jpg';
 
 import './styles.css';
 

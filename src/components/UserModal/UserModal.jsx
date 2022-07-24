@@ -1,5 +1,4 @@
 import React, { memo, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 
 import TextField from '@mui/material/TextField';
@@ -10,27 +9,25 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
 
-import { validationSchemaForLogin, validationSchemaForRegistration } from '../../validate';
-import { loginRequested } from '../../redux/actions/actionCreators/login';
-import { registrationRequested } from '../../redux/actions/actionCreators/registration';
+import { newsModalInitialValues, userModalInitialValues } from '../constant';
+import { getValidateSchemaForUserModal } from '../../validate';
 
 function UserModal() {
   const [modalType, checkModalType] = useState('Add News');
   const [open, setOpen] = useState(false);
   const isNewsModal = modalType === 'Add News';
-  const dispatch = useDispatch();
- 
-  const { error, isLoading } = selectNews();
-  const validationSchema = getSchemaForNews(modalType);
-  const inputFieldArray = isNewsModal ? ['title', 'text', 'image', 'tag'] : ['email', 'name'];
 
+  const inputFieldArray = isNewsModal ? ['title', 'text', 'image', 'tag'] : ['email', 'name'];
+  const validationSchema = getValidateSchemaForUserModal(modalType);
 
   const formik = useFormik({
-    initialValues: isNewsModal ? userModalInitialValues : newsModalInitialValues,
+    initialValues: isNewsModal ? newsModalInitialValues : userModalInitialValues,
     validationSchema,
     onSubmit: (values) => {
       if (isNewsModal) {
-        dispatch(createNews(values));
+        alert(JSON.stringify(values));
+      } else {
+        alert(JSON.stringify(values));
       }
     },
   });
@@ -75,8 +72,6 @@ function UserModal() {
           <DialogTitle>{modalType}</DialogTitle>
           <DialogContent>
 
-            {error && <Alert severity="error">{error}</Alert>}
-
             {inputFieldArray.map((item) => (item === 'image'
               ? (
                 <TextField
@@ -85,7 +80,6 @@ function UserModal() {
                   key={item}
                   name={item}
                   type="file"
-                  disabled={isLoading}
                   onBlur={formik.handleBlur}
                   onChange={handleChange}
                   error={formik.touched[item] && Boolean(formik.errors[item])}
@@ -100,7 +94,6 @@ function UserModal() {
                   name={item}
                   label="text"
                   type="text"
-                  disabled={isLoading}
                   value={formik.values[item]}
                   onBlur={formik.handleBlur}
                   onChange={handleChange}
@@ -108,8 +101,6 @@ function UserModal() {
                   helperText={formik.touched[item] && formik.errors[item]}
                 />
               )))}
-
-            {isLoading && <LinearProgress />}
 
           </DialogContent>
           <DialogActions>

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { getUserRequested } from '../../redux/actions/actionCreators/user';
-
+import UserModal from '../../components/UserModal/UserModal';
 import './styles.css';
 
 function UserPage() {
@@ -26,6 +26,7 @@ function UserPage() {
         Почтовый адрес:
         {user.email}
       </div>
+      <UserModal />
     </>
   );
 }
