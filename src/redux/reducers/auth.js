@@ -1,4 +1,4 @@
-import { loginTypes, registrationTypes } from '../actions/types';
+import { accessTypes, loginTypes, registrationTypes } from '../actions/types';
 
 import { getToken } from '../../helpers/localStorage';
 
@@ -6,16 +6,16 @@ const initialState = {
   isAccess: Boolean(getToken()),
   isLoading: false,
   error: null,
-  loginUser: null,
+  loginUser: {},
 };
 
 const authReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case loginTypes.LOGIN_REQUESTED:
     case registrationTypes.REGISTRATION_REQUESTED:
+    case accessTypes.ACCESS_REQUESTED:
       return ({
         ...state,
-        isAccess: false,
         isLoading: true,
         error: null,
       });

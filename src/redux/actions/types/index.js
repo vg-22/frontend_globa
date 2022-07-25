@@ -23,6 +23,12 @@ const userTypes = {
   USER_ERROR: 'USER_ERROR',
 };
 
+const accessTypes = {
+  ACCESS_REQUESTED: 'ACCESS_REQUESTED',
+  ACCESS_SUCCESS: 'ACCESS_SUCCESS',
+  ACCESS_ERROR: 'ACCESS_ERROR',
+};
+
 export {
-  loginTypes, newsTypes, registrationTypes, userTypes,
+  loginTypes, newsTypes, registrationTypes, userTypes, accessTypes,
 };

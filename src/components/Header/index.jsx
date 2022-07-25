@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import AppBar from '@mui/material/AppBar';
@@ -7,9 +7,10 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 
-import { deleteToken } from '../../helpers/localStorage';
+import { deleteToken, getToken } from '../../helpers/localStorage';
 import { logoutUser } from '../../redux/actions/actionCreators/login';
 import AuthModal from '../AuthModal';
+import accessRequested from '../../redux/actions/actionCreators/access';
 
 import './styles.css';
 
@@ -22,6 +23,10 @@ function Header() {
     deleteToken();
     dispatch(logoutUser());
   };
+
+  useEffect(() => {
+    if (getToken()) dispatch(accessRequested());
+  }, []);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
