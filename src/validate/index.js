@@ -26,4 +26,26 @@ const validationSchemaForRegistration = yup.object({
     .required('Name is required'),
 });
 
-export { validationSchemaForLogin, validationSchemaForRegistration };
+const validationSchemaForUser = yup.object({
+  name: yup
+    .string('Enter your name')
+    .min(2, 'Name should be of minimum 2 characters length'),
+});
+
+const validationSchemaForNews = yup.object({
+  title: yup
+    .string('Enter news title')
+    .required('Title is required'),
+  tag: yup
+    .string('Enter tag')
+    .min(4, 'Tag should be of minimum 4 characters length')
+    .required('Tag is required'),
+});
+
+const getValidateSchemaForUserModal = (modalType) => (modalType === 'Add News' ? validationSchemaForNews : validationSchemaForUser);
+
+export {
+  validationSchemaForLogin,
+  validationSchemaForRegistration,
+  getValidateSchemaForUserModal,
+};

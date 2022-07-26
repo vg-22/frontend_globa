@@ -1,0 +1,18 @@
+.emailUser{
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+  margin-right: 30px;
+  margin-top: 30px;
+} 
+
+.nameUser{
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+  margin-right: 30px;
+  margin-top: 30px;
+} 
+
+.userPage {
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

@@ -8,7 +8,7 @@ import { saveToken } from '../../helpers/localStorage';
 function* registrationWorker({ payload }) {
   try {
     const { data } = yield call(api.post, '/registration', payload);
-    saveToken(data.token);
+    yield saveToken(data.token);
     yield put(registrationSuccess(data.data));
   } catch (error) {
     yield put(registrationError(error.message));

@@ -17,4 +17,18 @@ const loginTypes = {
   LOGOUT_USER: 'LOGOUT_USER',
 };
 
-export { loginTypes, newsTypes, registrationTypes };
+const userTypes = {
+  USER_REQUESTED: 'USER_REQUESTED',
+  USER_SUCCESS: 'USER_SUCCESS',
+  USER_ERROR: 'USER_ERROR',
+};
+
+const accessTypes = {
+  ACCESS_REQUESTED: 'ACCESS_REQUESTED',
+  ACCESS_SUCCESS: 'ACCESS_SUCCESS',
+  ACCESS_ERROR: 'ACCESS_ERROR',
+};
+
+export {
+  loginTypes, newsTypes, registrationTypes, userTypes, accessTypes,
+};
