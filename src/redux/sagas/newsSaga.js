@@ -7,7 +7,6 @@ import api from '../../api';
 function* getNewsWorker() {
   try {
     const { data } = yield call(api.get, '/news');
-
     yield put(getNewsSuccess(data.data));
   } catch (error) {
     yield put(getNewsError(error.message));

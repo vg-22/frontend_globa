@@ -17,7 +17,8 @@ function UserPage() {
   const { user, isLoading } = useSelector(((state) => state.userReducer));
   const { news } = useSelector(((state) => state.newsReducer));
   const { loginUser } = useSelector(((state) => state.authReducer));
-  const isMyPage = (loginUser.id === Number(id));
+  const isAccess = useSelector((state) => state.authReducer.isAccess);
+  const isMyPage = (isAccess && loginUser.id === Number(id));
   useEffect(() => {
     dispatch(getUserRequested(id));
   }, [id]);

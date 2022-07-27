@@ -21,7 +21,6 @@ function Header() {
   const logOutUser = () => {
     dispatch(logoutUser());
   };
-
   useEffect(() => {
     if (getToken()) dispatch(loginRequested());
   }, []);
