@@ -1,9 +1,10 @@
-import { newsTypes } from '../actions/types';
+import { newsTypes, userNewsTypes } from '../actions/types';
 
 const initialState = {
   isLoading: false,
   error: null,
   news: [],
+  userNews: [],
 };
 
 const newsReducer = (state = initialState, action = {}) => {
@@ -15,9 +16,11 @@ const newsReducer = (state = initialState, action = {}) => {
         error: null,
       });
     case newsTypes.GET_NEWS_SUCCESS:
+    case userNewsTypes.USER_NEWS_SUCCESS:
       return ({
         ...state,
         news: action.payload,
+        userNews: action.payload,
         isLoading: false,
         error: null,
       });

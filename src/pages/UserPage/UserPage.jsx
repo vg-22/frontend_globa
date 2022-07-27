@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import LinearProgress from '@mui/material/LinearProgress';
 
 import { getUserRequested } from '../../redux/actions/actionCreators/user';
+import { getUserNewsRequested } from '../../redux/actions/actionCreators/userNews';
 import UserModal from '../../components/UserModal/UserModal';
 import NewsCard from '../../components/NewsCard';
 
@@ -14,15 +15,18 @@ function UserPage() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { user, isLoading } = useSelector(((state) => state.userReducer));
-  const { news } = user;
+  const { news } = useSelector(((state) => state.newsReducer));
   const { loginUser } = useSelector(((state) => state.authReducer));
-  const isMyPage = (loginUser.id === Number(id));
+  const isAccess = useSelector((state) => state.authReducer.isAccess);
+  const isMyPage = (isAccess && loginUser.id === Number(id));
   useEffect(() => {
     dispatch(getUserRequested(id));
   }, [id]);
+  useEffect(() => {
+    dispatch(getUserNewsRequested(id));
+  }, [id]);
 
   return (
-
     <>
       {isLoading ? <LinearProgress /> : (
         <>
@@ -36,13 +40,10 @@ function UserPage() {
             {user.email}
           </div>
           {isMyPage && <UserModal />}
-
           <div className="userPage">
             { news?.map((item) => <NewsCard cardContent={item} key={item.id} />) }
           </div>
-
         </>
-
       )}
       <div />
     </>

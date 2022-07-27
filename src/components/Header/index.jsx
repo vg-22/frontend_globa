@@ -7,10 +7,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 
-import { deleteToken, getToken } from '../../helpers/localStorage';
-import { logoutUser } from '../../redux/actions/actionCreators/login';
+import { getToken } from '../../helpers/localStorage';
+import { loginRequested, logoutUser } from '../../redux/actions/actionCreators/login';
 import AuthModal from '../AuthModal';
-import accessRequested from '../../redux/actions/actionCreators/access';
 
 import './styles.css';
 
@@ -20,12 +19,10 @@ function Header() {
   const isAccess = useSelector((state) => state.authReducer.isAccess);
   const dispatch = useDispatch();
   const logOutUser = () => {
-    deleteToken();
     dispatch(logoutUser());
   };
-
   useEffect(() => {
-    if (getToken()) dispatch(accessRequested());
+    if (getToken()) dispatch(loginRequested());
   }, []);
 
   return (
@@ -46,7 +43,6 @@ function Header() {
                 <AuthModal />
               </Box>
             )}
-
         </Toolbar>
       </AppBar>
     </Box>
